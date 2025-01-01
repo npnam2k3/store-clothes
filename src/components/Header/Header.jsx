@@ -12,13 +12,13 @@ const Header = () => {
       <div className={containerHeader}>
       <div className={containerBox}>
         <div className={containerBoxIcon}>
-          {dataBoxIcon.slice(0,3).map(item=>(
-            <BoxIcon type={item.type} href={item.href} />
+          {dataBoxIcon.slice(0,3).map((item, index)=>(
+            <BoxIcon type={item.type} href={item.href} key={index} />
           ))}
         </div>
         <div className={containerMenu}>
-          {dataMenu.slice(0,3).map(item=>(
-            <Menu content={item.content} href={item.href} />
+          {dataMenu.slice(0,3).map((item, index)=>(
+            <Menu content={item.content} href={item.href} key={index} />
           ))}
         </div>
       </div>
@@ -30,13 +30,13 @@ const Header = () => {
       </div>
       <div className={containerBox}>
         <div className={containerMenu}>
-          {dataMenu.slice(3,dataMenu.length).map(item=>(
-              <Menu content={item.content} href={item.href} />
+          {dataMenu.slice(3,dataMenu.length).map((item, index)=>(
+              <Menu content={item.content} href={item.href} key={index} />
             ))}
         </div>
         <div className={containerBoxIcon}>
-          {dataBoxIcon.slice(3, dataBoxIcon.length).map(item=>(
-            <BoxIcon type={item.type} href={item.href} />
+          {dataBoxIcon.slice(3, dataBoxIcon.length).map((item, index)=>(
+            <BoxIcon type={item.type} href={item.href} key={index} />
           ))}
         </div>
       </div>
