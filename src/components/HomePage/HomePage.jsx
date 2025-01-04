@@ -8,6 +8,7 @@ import AdvanceHeading from '@components/AdvanceHeading/AdvanceHeading'
 import HeadingListProduct from '@components/HeadingListProduct/HeadingListProduct'
 import { getProducts } from '@/apis/productSerivce'
 import PopularProduct from '@components/PopularProduct/PopularProduct'
+import SaleHomePage from '@components/SaleHomePage/SaleHomePage'
 
 
 const HomePage = () => {
@@ -15,7 +16,12 @@ const HomePage = () => {
     const [listProduct, setListProduct] = useState([])
 
     useEffect(()=>{
-        getProducts().then(
+        const query={
+            sortType: 0,
+            page: 1,
+            limit: 10
+        }
+        getProducts(query).then(
           res=>{setListProduct(res.contents)
           })
     }, [])
@@ -28,6 +34,7 @@ const HomePage = () => {
             <AdvanceHeading/>
             <HeadingListProduct data={listProduct.slice(0,2)}/>
             <PopularProduct data={listProduct.slice(2, listProduct.length)}/>
+            <SaleHomePage/>
         </div>
     </div>
   )

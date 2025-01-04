@@ -1,0 +1,38 @@
+@import "@styles/mixins.module.scss";
+@import "@styles/variables.module.scss";
+
+.container {
+  @include flex_box_custom(space-between, center, 20px);
+  margin-top: 100px;
+  .title {
+    font-size: 35px;
+    color: $four_color;
+    font-weight: 400;
+    text-align: center;
+    line-height: 46px;
+  }
+  .desc {
+    font-size: 16px;
+    color: $third_color;
+    font-weight: 400;
+    line-height: 26px;
+    width: 460px;
+    text-align: center;
+  }
+  .boxBtn {
+    @include flex_box_custom(center, center, 0px);
+    margin-top: 30px;
+  }
+  .boxImage {
+    @include flex_box_custom(center, center, 0px);
+    width: 100%;
+    img {
+      width: 455px;
+      height: 400px;
+      object-fit: cover;
+    }
+  }
+  .contentBox {
+    padding: 0 15px;
+  }
+}
