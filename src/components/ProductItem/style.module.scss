@@ -1,0 +1,64 @@
+@import "@styles/mixins.module.scss";
+@import "@styles/variables.module.scss";
+
+.container {
+  height: 409px;
+}
+.boxImg {
+  width: 300px;
+  height: 100%;
+  position: relative;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  &:hover .showImgWhileHover {
+    opacity: 1;
+    transition: opacity 500ms;
+  }
+  .showImgWhileHover {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+  .showActionWhileHover {
+    position: absolute;
+    opacity: 0;
+    bottom: 20px;
+    right: 0px;
+    background: $white_color;
+  }
+  &:hover .showActionWhileHover {
+    opacity: 1;
+    right: 20px;
+    transition: opacity 500ms, right 300ms;
+  }
+  .boxIcon {
+    width: 40px;
+    height: 40px;
+    color: $primary_color;
+    @include flex_box_custom(center, center, 0);
+    img {
+      width: 17px;
+      height: 17px;
+    }
+    &:hover {
+      background-color: #ccc;
+    }
+  }
+}
+
+.name {
+  font-size: 16px;
+  color: $four_color;
+  margin: 6px 0;
+}
+.priceItem {
+  font-size: 14px;
+  color: $third_color;
+}

@@ -1,0 +1,23 @@
+@import "@styles/mixins.module.scss";
+@import "@styles/variables.module.scss";
+
+.container {
+  background-image: url("https://xstore.8theme.com/elementor2/marseille04/wp-content/uploads/sites/2/2022/12/photo-of-man-wearing-white-hoodie-5474310.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 409px;
+  width: calc(100% / 2);
+}
+
+.title {
+  color: $four_color;
+  font-size: 28px;
+  font-weight: 400px;
+  text-align: center;
+  margin-top: 200px;
+}
+
+.boxBtn {
+  margin-top: 20px;
+  text-align: center;
+}
