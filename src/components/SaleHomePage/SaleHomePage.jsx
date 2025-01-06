@@ -1,12 +1,12 @@
 
-import useTranslateX from '@components/SaleHomePage/translateXImage'
+import useTranslateXImage from '@/hooks/useTranslateImage'
 import styles from './style.module.scss'
 import Button from '@components/Button/Button'
 
 const SaleHomePage = () => {
     const {container, title, desc, contentBox,boxBtn, boxImage} = styles
 
-    const {translateXPosition} = useTranslateX()
+    const {translateXPosition} = useTranslateXImage()
     
   return (
     <div className={container}>
