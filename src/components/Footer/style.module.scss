@@ -1,0 +1,31 @@
+@import "@styles/mixins.module.scss";
+@import "@styles/variables.module.scss";
+
+.container {
+  background: #363636;
+  margin-top: 80px;
+  color: $white_color;
+  text-align: center;
+  padding: 50px 0;
+
+  .boxNav {
+    @include flex_box_custom(center, center, 50px);
+
+    margin-top: 20px;
+    font-size: 15px;
+
+    .boxItem {
+      cursor: pointer;
+      &:hover {
+        color: #ccc;
+      }
+    }
+  }
+
+  .checkoutBox {
+    margin-top: 35px;
+  }
+  .copyright {
+    margin-top: 20px;
+  }
+}
