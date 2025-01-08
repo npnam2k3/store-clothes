@@ -31,7 +31,7 @@
 }
 
 .containerBoxIcon {
-  @include flex_box_custom(center, center);
+  @include flex_box_custom(center, center, 20px);
 }
 .containerBox {
   @include flex_box_custom(center, center, 20px);
