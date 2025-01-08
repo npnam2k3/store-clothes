@@ -1,11 +1,12 @@
 import BoxIcon from '@components/Header/BoxIcon/BoxIcon'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import {dataBoxIcon, dataMenu} from './constant'
 import styles from './style.module.scss'
 import Menu from '@components/Header/Menu/Menu'
 import Logo from '@icons/images/Logo-retina.png'
 import useScrollHandling from '@/hooks/useScrollHandling'
 import classNames from 'classnames'
+import { SideBarContext } from '@/context/SideBarProvider'
 
 const Header = () => {
   const {containerBoxIcon, containerMenu,containerHeader,containerBox, container, fixedHeader,topHeader} = styles
@@ -13,6 +14,7 @@ const Header = () => {
   const [fixedPosition, setFixedPosition] = useState(false)
   const {scrollPosition} = useScrollHandling()
 
+  const {isOpen, setIsOpen} = useContext(SideBarContext)
 
   useEffect(()=>{
     setFixedPosition(scrollPosition >130)
@@ -30,7 +32,7 @@ const Header = () => {
           </div>
           <div className={containerMenu}>
             {dataMenu.slice(0,3).map((item, index)=>(
-              <Menu content={item.content} href={item.href} key={index} />
+              <Menu content={item.content} href={item.href} key={index} setIsOpen={setIsOpen} />
             ))}
           </div>
         </div>
@@ -43,7 +45,7 @@ const Header = () => {
       <div className={containerBox}>
         <div className={containerMenu}>
           {dataMenu.slice(3,dataMenu.length).map((item, index)=>(
-              <Menu content={item.content} href={item.href} key={index} />
+              <Menu content={item.content} href={item.href} key={index} setIsOpen={setIsOpen}/>
             ))}
         </div>
         <div className={containerBoxIcon}>

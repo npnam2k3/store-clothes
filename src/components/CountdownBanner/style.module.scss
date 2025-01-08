@@ -7,17 +7,16 @@
   background-size: cover;
   height: 409px;
   width: calc(100% / 2);
-}
+  .title {
+    color: $four_color;
+    font-size: 28px;
+    font-weight: 400px;
+    text-align: center;
+    margin-top: 200px;
+  }
 
-.title {
-  color: $four_color;
-  font-size: 28px;
-  font-weight: 400px;
-  text-align: center;
-  margin-top: 200px;
-}
-
-.boxBtn {
-  margin-top: 20px;
-  text-align: center;
+  .boxBtn {
+    margin: 20px auto 0 auto;
+    width: 172px;
+  }
 }

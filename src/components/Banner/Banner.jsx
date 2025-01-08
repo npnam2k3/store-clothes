@@ -9,7 +9,11 @@ const Banner = () => {
       <div className={content}>
         <h1 className={title}>XStore Marseille04 Demo</h1>
         <div className={desc}>Make yours celebrations even more special this years with beautiful.</div>
-        <Button content={"Go to shop"}/>
+        <div style={{
+          width: '172px'
+        }}>
+            <Button content={"Go to shop"}/>
+        </div>
       </div>
     </div>
   )
