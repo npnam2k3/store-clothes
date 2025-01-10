@@ -12,6 +12,7 @@
   .boxRemember {
     @include flex_box_custom(flex-start, center, 0px);
     margin-top: 20px;
+    margin-bottom: 30px;
     input {
       margin-right: 10px;
     }
@@ -22,7 +23,7 @@
   }
   .boxBtn {
     width: 322px;
-    margin-top: 30px;
+    margin-top: 10px;
   }
   .lostPass {
     font-size: 14px;
