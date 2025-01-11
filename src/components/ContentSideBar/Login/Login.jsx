@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import styles from "./style.module.scss";
 import InputCommon from "@components/InputCommon/InputCommon";
 import Button from "@components/Button/Button";
@@ -6,21 +6,23 @@ import Button from "@components/Button/Button";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { ToastContext } from "@/context/ToastProvider";
-import { register, signIn, getInfo } from "@/apis/authService";
+import { register, signIn } from "@/apis/authService";
 import Cookies from "js-cookie";
+import { SideBarContext } from "@/context/SideBarProvider";
+import { StoreContext } from "@/context/storeProvider";
 
 const Login = () => {
   const { container, title, boxRemember, boxBtn, lostPass } = styles;
   const [isRegister, setIsRegister] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useContext(ToastContext);
+  const { setIsOpen } = useContext(SideBarContext);
+  const { setUserId } = useContext(StoreContext);
+
   const handleToggle = () => {
     setIsRegister(!isRegister);
     formik.resetForm();
   };
-  useEffect(() => {
-    getInfo();
-  }, []);
 
   const formik = useFormik({
     initialValues: {
@@ -58,13 +60,16 @@ const Login = () => {
           .then((res) => {
             setIsLoading(false);
             const { id, token, refreshToken } = res.data;
+            setUserId(id);
             Cookies.set("token", token);
             Cookies.set("refreshToken", refreshToken);
-            Cookies.set("id", id);
+            Cookies.set("userId", id);
+            toast.success("Login successfully");
+            setIsOpen(false);
           })
           .catch((err) => {
             setIsLoading(false);
-            console.log(err);
+            // console.log(err);
           });
       }
     },
