@@ -7,7 +7,7 @@ const SelectBox = ({ options, getValue, type }) => {
   return (
     <select
       onChange={(e) => getValue(e.target.value, type)}
-      className={classNames(boxSelect, sort)}
+      className={classNames(boxSelect)}
     >
       {options.map((option) => (
         <option key={option.value} value={option.value}>
