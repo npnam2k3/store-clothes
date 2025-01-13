@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import styles from "../style.module.scss";
 import { SideBarContext } from "@/context/SideBarProvider";
 import { StoreContext } from "@/context/storeProvider";
+import { useNavigate } from "react-router-dom";
 
 const Menu = ({ content, href }) => {
   const { menu, subMenu } = styles;
@@ -9,11 +10,16 @@ const Menu = ({ content, href }) => {
   const { userInfo, handleLogout } = useContext(StoreContext);
 
   const [isShowSubMenu, setIsShowSubMenu] = useState(false);
+  const navigate = useNavigate();
 
   const handleClickShowLogin = () => {
     if (content === "Sign In" && !userInfo) {
       setIsOpen(true);
       setType("login");
+    }
+
+    if (content === "Our Shop") {
+      navigate("/shop");
     }
   };
   const handleRenderText = (content) => {
