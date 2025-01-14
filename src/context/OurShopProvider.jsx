@@ -21,6 +21,7 @@ export const OurShopProvider = ({ children }) => {
   const [showId, setShowId] = useState("8");
   const [isShowGrid, setIsShowGrid] = useState(true);
   const [products, setProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const values = {
     sortOptions,
@@ -30,6 +31,7 @@ export const OurShopProvider = ({ children }) => {
     setIsShowGrid,
     products,
     isShowGrid,
+    isLoading,
   };
 
   useEffect(() => {
@@ -42,8 +44,12 @@ export const OurShopProvider = ({ children }) => {
     getProducts(query)
       .then((res) => {
         setProducts(res.contents);
+        setIsLoading(false);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        setIsLoading(false);
+      });
   }, [sortId, showId]);
   return (
     <OurShopContext.Provider value={values}>{children}</OurShopContext.Provider>

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./style.module.scss";
 import reloadIcon from "@icons/svgs/reloadIcon1.svg";
 import heartIcon from "@icons/svgs/heartIcon2.svg";
@@ -32,8 +32,28 @@ const ProductItem = ({
     containerItem,
     leftBtn,
     largeImg,
+    isActiveSize,
+    btnClear,
   } = styles;
-  const { isShowGrid } = useContext(OurShopContext);
+  const ourShopStore = useContext(OurShopContext);
+  const [isShowGrid, setIsShowGrid] = useState(ourShopStore?.isShowGrid);
+  const [sizeChoose, setSizeChoose] = useState("");
+
+  const handleChooseSize = (size) => {
+    setSizeChoose(size);
+  };
+
+  const handleClearSize = () => {
+    setSizeChoose("");
+  };
+
+  useEffect(() => {
+    if (isHomePage) {
+      setIsShowGrid(true);
+    } else {
+      setIsShowGrid(ourShopStore?.isShowGrid);
+    }
+  }, [isHomePage, ourShopStore?.isShowGrid]);
 
   return (
     <div className={isShowGrid ? "" : containerItem}>
@@ -62,11 +82,22 @@ const ProductItem = ({
           <div className={boxSize}>
             {detail.size.map((item, index) => {
               return (
-                <div key={index} className={size}>
+                <div
+                  key={index}
+                  className={classNames(size, {
+                    [isActiveSize]: sizeChoose === item.name,
+                  })}
+                  onClick={() => handleChooseSize(item.name)}
+                >
                   {item.name}
                 </div>
               );
             })}
+          </div>
+        )}
+        {sizeChoose && (
+          <div className={btnClear} onClick={handleClearSize}>
+            clear
           </div>
         )}
 

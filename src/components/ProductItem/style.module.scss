@@ -81,6 +81,16 @@
     }
   }
 }
+.isActiveSize {
+  border: 1px solid $primary_color !important;
+}
+.btnClear {
+  font-size: 12px;
+  color: $secondary_color;
+  text-align: center;
+  margin-top: 5px;
+  cursor: pointer;
+}
 .textCenter {
   text-align: center;
 }
@@ -89,8 +99,8 @@
   width: 142px;
 }
 .containerItem {
-  @include flex_box_custom(flex-start, center, 10px);
-  margin-top: 20px;
+  @include flex_box_custom(flex-start, center, 20px);
+  margin-top: 10px;
   .boxContent {
     @include flex_box_custom(flex-start, flex-start, 0px);
     flex-direction: column;
