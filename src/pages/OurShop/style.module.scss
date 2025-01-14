@@ -77,3 +77,21 @@
   margin-top: 15px;
   flex-wrap: wrap;
 }
+.sectionListProduct {
+  min-height: 800px;
+}
+.loading {
+  transform: rotate(360deg);
+  transition: all 0.3s ease;
+}
+.rotate {
+  animation: loading 3s linear infinite;
+  @keyframes loading {
+    0% {
+      transform: rotate(0);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}

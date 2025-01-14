@@ -4,13 +4,15 @@ import Layout from "@components/Layout/Layout";
 import ProductItem from "@components/ProductItem/ProductItem";
 import styles from "../style.module.scss";
 import Button from "@components/Button/Button";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 const ListProducts = () => {
-  const { products, isShowGrid, isLoading } = useContext(OurShopContext);
-  const { containerProduct } = styles;
+  const { products, isShowGrid, isLoading, handleLoadMore, total, isLoadMore } =
+    useContext(OurShopContext);
+  const { containerProduct, sectionListProduct, rotate } = styles;
 
   return (
-    <>
+    <div className={sectionListProduct}>
       <Layout>
         {isLoading ? (
           <>Loading...</>
@@ -29,18 +31,29 @@ const ListProducts = () => {
                 />
               ))}
             </div>
-            <div
-              style={{
-                width: "180px",
-                margin: "50px auto",
-              }}
-            >
-              <Button content={"LOAD MORE PRODUCT"} />
-            </div>
+            {products.length < total && (
+              <div
+                style={{
+                  width: "180px",
+                  margin: "50px auto",
+                }}
+              >
+                <Button
+                  content={
+                    isLoadMore ? (
+                      <AiOutlineLoading3Quarters className={rotate} />
+                    ) : (
+                      "LOAD MORE PRODUCT"
+                    )
+                  }
+                  onClick={handleLoadMore}
+                />
+              </div>
+            )}
           </>
         )}
       </Layout>
-    </>
+    </div>
   );
 };
 
