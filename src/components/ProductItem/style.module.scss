@@ -58,7 +58,47 @@
   color: $four_color;
   margin: 6px 0;
 }
-.priceItem {
+.priceItem,
+.brand {
   font-size: 14px;
   color: $third_color;
+}
+.brand {
+  margin-bottom: 5px;
+}
+.boxSize {
+  @include flex_box_custom(center, center, 10px);
+  margin-top: 10px;
+  .size {
+    @include flex_box_custom(center, center, 0px);
+    border: 1px solid #e1e1e1;
+    padding: 4px 6px;
+    font-size: 12px;
+    cursor: pointer;
+    &:hover {
+      border: 1px solid $primary_color;
+      transition: border 500ms;
+    }
+  }
+}
+.textCenter {
+  text-align: center;
+}
+.boxBtn {
+  margin: 10px auto;
+  width: 142px;
+}
+.containerItem {
+  @include flex_box_custom(flex-start, center, 10px);
+  margin-top: 20px;
+  .boxContent {
+    @include flex_box_custom(flex-start, flex-start, 0px);
+    flex-direction: column;
+  }
+  .leftBtn {
+    margin-left: 0;
+  }
+  .largeImg {
+    width: 430px;
+  }
 }
