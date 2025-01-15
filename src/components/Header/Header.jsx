@@ -20,12 +20,14 @@ const Header = () => {
     container,
     fixedHeader,
     topHeader,
+    boxCart,
+    quantity,
   } = styles;
 
   const [fixedPosition, setFixedPosition] = useState(false);
   const { scrollPosition } = useScrollHandling();
 
-  const { isOpen, setIsOpen, setType } = useContext(SideBarContext);
+  const { setIsOpen, setType, listProductCart } = useContext(SideBarContext);
 
   useEffect(() => {
     setFixedPosition(scrollPosition > 130);
@@ -84,10 +86,13 @@ const Header = () => {
               style={{ width: "21px", height: "21px", cursor: "pointer" }}
               onClick={() => handleOpenSideBar("wishlist")}
             />
-            <GrCart
-              style={{ width: "21px", height: "21px", cursor: "pointer" }}
-              onClick={() => handleOpenSideBar("cart")}
-            />
+            <div className={boxCart}>
+              <GrCart
+                style={{ width: "21px", height: "21px", cursor: "pointer" }}
+                onClick={() => handleOpenSideBar("cart")}
+              />
+              <div className={quantity}>{listProductCart.length}</div>
+            </div>
           </div>
         </div>
       </div>

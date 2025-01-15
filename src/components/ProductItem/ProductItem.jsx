@@ -7,6 +7,11 @@ import eyeIcon from "@icons/svgs/eyeIcon.svg";
 import classNames from "classnames";
 import Button from "@components/Button/Button";
 import { OurShopContext } from "@contexts/OurShopProvider";
+import Cookies from "js-cookie";
+import { SideBarContext } from "@contexts/SideBarProvider";
+import { ToastContext } from "@contexts/ToastProvider";
+import { addProductToCart } from "@/apis/cartService";
+import LoadingTextCommon from "@components/LoadingTextCommon/LoadingTextCommon";
 
 const ProductItem = ({
   src,
@@ -36,8 +41,13 @@ const ProductItem = ({
     btnClear,
   } = styles;
   const ourShopStore = useContext(OurShopContext);
+  const { setIsOpen, setType, handleGetListProductCart, listProductCart } =
+    useContext(SideBarContext);
+  const { toast } = useContext(ToastContext);
   const [isShowGrid, setIsShowGrid] = useState(ourShopStore?.isShowGrid);
   const [sizeChoose, setSizeChoose] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const userId = Cookies.get("userId");
 
   const handleChooseSize = (size) => {
     setSizeChoose(size);
@@ -45,6 +55,41 @@ const ProductItem = ({
 
   const handleClearSize = () => {
     setSizeChoose("");
+  };
+
+  const handleAddToCart = () => {
+    if (!userId) {
+      setIsOpen(true);
+      setType("login");
+      toast.warning("Please login to add product to cart");
+      return;
+    }
+    if (!sizeChoose) {
+      toast.warning("Please choose size");
+      return;
+    }
+
+    const data = {
+      userId,
+      productId: detail._id,
+      quantity: 1,
+      size: sizeChoose,
+    };
+
+    setIsLoading(true);
+    addProductToCart(data)
+      .then((res) => {
+        setIsOpen(true);
+        setType("cart");
+        setIsLoading(false);
+        toast.success(res.data.msg);
+        handleGetListProductCart(userId, "cart");
+      })
+      .catch((err) => {
+        console.log(err);
+        setIsLoading(false);
+        toast.error("Add product to cart failed");
+      });
   };
 
   useEffect(() => {
@@ -111,8 +156,13 @@ const ProductItem = ({
           ${price}
         </div>
         {!isHomePage && (
-          <div className={classNames(boxBtn, { [leftBtn]: !isShowGrid })}>
-            <Button content={"ADD TO CART"} />
+          <div
+            className={classNames(boxBtn, { [leftBtn]: !isShowGrid })}
+            onClick={handleAddToCart}
+          >
+            <Button
+              content={isLoading ? <LoadingTextCommon /> : "ADD TO CART"}
+            />
           </div>
         )}
       </div>
