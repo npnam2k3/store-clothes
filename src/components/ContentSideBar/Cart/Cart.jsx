@@ -5,19 +5,21 @@ import { GrCart } from "react-icons/gr";
 import ItemProduct from "@components/ContentSideBar/components/ItemProduct/ItemProduct";
 import Button from "@components/Button/Button";
 import { SideBarContext } from "@contexts/SideBarProvider";
+import LoadingTextCommon from "@components/LoadingTextCommon/LoadingTextCommon";
 
 const Cart = () => {
   const { container, boxTotal, boxBtn } = styles;
-  const { listProductCart } = useContext(SideBarContext);
-  console.log(listProductCart);
+  const { listProductCart, isLoading } = useContext(SideBarContext);
+
   return (
     <div className={container}>
-      <div>
-        <div>
-          <HeaderSideBar icon={<GrCart />} title={"CART"} />
-        </div>
-        <div style={{ overflow: "scroll" }}>
-          {listProductCart.map((item, index) => (
+      <div style={{ overflow: "scroll" }}>
+        <HeaderSideBar icon={<GrCart />} title={"CART"} />
+
+        {isLoading ? (
+          <LoadingTextCommon />
+        ) : (
+          listProductCart.map((item, index) => (
             <ItemProduct
               key={index}
               src={item.images[0]}
@@ -26,9 +28,11 @@ const Cart = () => {
               pricePr={item.price}
               quantity={item.quantity}
               codePr={item.sku}
+              productId={item.productId}
+              userId={item.userId}
             />
-          ))}
-        </div>
+          ))
+        )}
       </div>
 
       <div>
