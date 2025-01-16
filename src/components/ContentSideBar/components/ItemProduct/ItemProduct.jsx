@@ -31,7 +31,6 @@ const ItemProduct = ({
     setIsDelete(true);
     deleteItem({ productId, userId })
       .then((res) => {
-        console.log(res);
         setIsDelete(false);
         handleGetListProductCart(userId, "cart");
       })
